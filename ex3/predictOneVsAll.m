@@ -8,14 +8,14 @@ function p = predictOneVsAll(all_theta, X)
 %  of values from 1..K (e.g., p = [1; 3; 1; 2] predicts classes 1, 3, 1, 2
 %  for 4 examples) 
 
-m = size(X, 1);
-num_labels = size(all_theta, 1);
+m = size(X, 1); % 5000 
+num_labels = size(all_theta, 1); % 10
 
 % You need to return the following variables correctly 
-p = zeros(size(X, 1), 1);
+p = zeros(size(X, 1), 1);  % 5000 * 1
 
 % Add ones to the X data matrix
-X = [ones(m, 1) X];
+X = [ones(m, 1) X]; % 5000 * 401
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
@@ -30,7 +30,13 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
+predict = sigmoid(X*all_theta'); % 5000 * 401 by 401 * 10
+% p is assigned with the column index of the maximum 
+% max(matrix, [], 2) means find the maximum in each row and store it in a
+% column vecotr 
+% max(matrix, [], 1) means find the maximum in each column and store it in
+% a row vector
+[~, p] = max(predict, [], 2); 
 
 
 
